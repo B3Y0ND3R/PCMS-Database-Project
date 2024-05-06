@@ -263,8 +263,6 @@ end;
 
 --shortlist of all the consumers using procedure
 create or replace procedure consumers_shortlist as
-begin
-declare
     cursor c is select c.name as c_name, m.med_name as m_name, d.quantity as qty, o.outlet_name as o_name from consumer c join outlet o 
     on c.outlet_id = o.outlet_id join details d on c.con_id = d.con_id join medicine m on d.med_id = m.med_id;
     r c%rowtype;
@@ -276,7 +274,6 @@ begin
     fetch c into r.c_name,r.m_name,r.qty,r.o_name;
     end loop;
     close c;
-end;
 end;
 /
 

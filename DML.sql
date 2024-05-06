@@ -65,16 +65,16 @@ insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) v
 insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(8, 8, 10, 3, '01-JUL-2025', '09-APR-2024');
 insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(9, 9, 7, 9, '15-MAY-2025', '10-APR-2024');
 insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(10, 10, 9, 11, '30-MAY-2025', '10-APR-2024');
-insert into details (DETAILS_ID, CON_ID, MED_ID, QUANTITY, EXP_DATE, TXN_DATE) values(11, 11, 1, 25, '15-MAY-25', '11-APR-24');
-insert into details (DETAILS_ID, CON_ID, MED_ID, QUANTITY, EXP_DATE, TXN_DATE) values(12, 12, 3, 30, '20-JUN-25', '11-APR-24');
-insert into details (DETAILS_ID, CON_ID, MED_ID, QUANTITY, EXP_DATE, TXN_DATE) values(13, 13, 5, 10, '25-JUN-25', '12-APR-24');
-insert into details (DETAILS_ID, CON_ID, MED_ID, QUANTITY, EXP_DATE, TXN_DATE) values(14, 14, 2, 5, '05-JUL-25', '12-APR-24');
-insert into details (DETAILS_ID, CON_ID, MED_ID, QUANTITY, EXP_DATE, TXN_DATE) values(15, 15, 4, 20, '10-JUL-25', '13-APR-24');
-insert into details (DETAILS_ID, CON_ID, MED_ID, QUANTITY, EXP_DATE, TXN_DATE) values(16, 16, 6, 15, '15-JUL-25', '13-APR-24');
-insert into details (DETAILS_ID, CON_ID, MED_ID, QUANTITY, EXP_DATE, TXN_DATE) values(17, 17, 8, 7, '20-JUL-25', '14-APR-24');
-insert into details (DETAILS_ID, CON_ID, MED_ID, QUANTITY, EXP_DATE, TXN_DATE) values(18, 18, 10, 8, '25-JUL-25', '14-APR-24');
-insert into details (DETAILS_ID, CON_ID, MED_ID, QUANTITY, EXP_DATE, TXN_DATE) values(19, 19, 7, 12, '30-JUL-25', '15-APR-24');
-insert into details (DETAILS_ID, CON_ID, MED_ID, QUANTITY, EXP_DATE, TXN_DATE) values(20, 20, 9, 10, '05-AUG-25', '15-APR-24');
+insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(11, 11, 1, 25, '15-MAY-25', '11-APR-24');
+insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(12, 12, 3, 30, '20-JUN-25', '11-APR-24');
+insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(13, 13, 5, 10, '25-JUN-25', '12-APR-24');
+insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(14, 14, 2, 5, '05-JUL-25', '12-APR-24');
+insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(15, 15, 4, 20, '10-JUL-25', '13-APR-24');
+insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(16, 16, 6, 15, '15-JUL-25', '13-APR-24');
+insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(17, 17, 8, 7, '20-JUL-25', '14-APR-24');
+insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(18, 18, 10, 8, '25-JUL-25', '14-APR-24');
+insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(19, 19, 7, 12, '30-JUL-25', '15-APR-24');
+insert into details (details_id, con_id, med_id, quantity, exp_date, txn_date) values(20, 20, 9, 10, '05-AUG-25', '15-APR-24');
 
 
 -- insert into clerk table
@@ -156,6 +156,19 @@ select * from consumer where not (age > 30);
 
 -- string operations
 
+select * from consumer where name like 'Shoumik%';
+select * from consumer where name like '%Rahman';
+select * from consumer where name like '%Haque%';
+select * from consumer where gender like '____';
+
+
+-- views
+create view consumer_details as select c.name as c_name, m.med_name as m_name, d.quantity as qty, o.outlet_name as o_name from consumer c join outlet o 
+on c.outlet_id = o.outlet_id join details d on c.con_id = d.con_id join medicine m on d.med_id = m.med_id;
+
+select * from consumer_details;
+create view  custom as select * from consumer_details where qty<9;
+select * from custom;
 
 
 -- join operations 
